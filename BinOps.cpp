@@ -6,7 +6,6 @@
 #include <vector>
 #include <limits>
 
-// Class to store binary operations
 class BinOps {
 private:
     float operand1;
@@ -14,10 +13,8 @@ private:
     char op;
 
 public:
-    // Constructor
     BinOps() : operand1(0), operand2(0), op('+') {}
 
-    // Setters
     void setOperand1(float opnd1) { operand1 = opnd1; }
     void setOperand2(float opnd2) { operand2 = opnd2; }
     void setOperator(char oper) {
@@ -28,12 +25,10 @@ public:
         }
     }
 
-    // Getters
     float getOperand1() const { return operand1; }
     float getOperand2() const { return operand2; }
     char getOperator() const { return op; }
 
-    // Evaluate the binary operation
     float evaluate() const {
         switch (op) {
             case '+': return operand1 + operand2;
@@ -47,7 +42,6 @@ public:
         }
     }
 
-    // Generate the expression string
     std::string getExpression() const {
         std::ostringstream oss;
         oss << operand1 << " " << op << " " << operand2;
@@ -55,15 +49,14 @@ public:
     }
 };
 
-// Function to read and parse input using >> directly (approach i)
 void readUsingStreamExtraction(std::vector<BinOps>& expressions) {
     float opnd1, opnd2;
     char oper;
     while (true) {
         std::cout << "Enter expression (operand1 operator operand2) or 'q' to quit: ";
         if (!(std::cin >> opnd1 >> oper >> opnd2)) {
-            std::cin.clear(); // Clear the error flag
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the invalid input
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             char check;
             std::cin >> check;
             if (check == 'q') break;
@@ -78,7 +71,6 @@ void readUsingStreamExtraction(std::vector<BinOps>& expressions) {
             binop.setOperator(oper);
             expressions.push_back(binop);
 
-            // Evaluate and print the result immediately
             float result = binop.evaluate();
             std::cout << binop.getExpression() << " = " << result << "\n";
         } catch (const std::exception& e) {
@@ -87,7 +79,6 @@ void readUsingStreamExtraction(std::vector<BinOps>& expressions) {
     }
 }
 
-// Function to read and parse input using getline and istringstream (approach ii)
 void readUsingGetline(std::vector<BinOps>& expressions) {
     std::string input;
     while (true) {
@@ -107,7 +98,6 @@ void readUsingGetline(std::vector<BinOps>& expressions) {
                 binop.setOperator(oper);
                 expressions.push_back(binop);
 
-                // Evaluate and print the result immediately
                 float result = binop.evaluate();
                 std::cout << binop.getExpression() << " = " << result << "\n";
             } catch (const std::exception& e) {
@@ -119,7 +109,6 @@ void readUsingGetline(std::vector<BinOps>& expressions) {
     }
 }
 
-// Function to evaluate and write the results to a file
 void writeResultsToFile(const std::vector<BinOps>& expressions, const std::string& filename) {
     std::ofstream outFile(filename);
 
@@ -149,7 +138,7 @@ int main() {
     std::cout << "2. Using getline and istringstream\n";
     std::cout << "Enter your choice: ";
     std::cin >> methodChoice;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear newline from the buffer
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     if (methodChoice == 1) {
         readUsingStreamExtraction(expressions);
@@ -160,7 +149,6 @@ int main() {
         return 1;
     }
 
-    // Write the evaluated expressions to a file
     writeResultsToFile(expressions, "results.txt");
 
     return 0;
