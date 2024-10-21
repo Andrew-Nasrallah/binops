@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/BinOps.dir/BinOps.cpp.o -o BinOps 

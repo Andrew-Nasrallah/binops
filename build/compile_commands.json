@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/root/Projects/binops/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/BinOps.dir/BinOps.cpp.o -c /root/Projects/binops/BinOps.cpp",
+  "file": "/root/Projects/binops/BinOps.cpp",
+  "output": "CMakeFiles/BinOps.dir/BinOps.cpp.o"
+}
+]
